@@ -9,6 +9,13 @@ After you complete the exercise, they will understand how to:
     - Entities
     - Dialog
 * Create a simple chatbot that can be deployed locally, in IBM Clod Foundry, IBM Kubernetes Service and OpenShift.
+* Via this simple chatbot, you can exchange information similar to text messaging.
+
+This repo is part of Watson chatbot serial. The entire serial includes
+* Simple ChatBot
+* Dressed-up ChatBot
+* Voice-Enabled ChatBot
+* VoiceBot – Call and speak to ChatBot
 
 > **NOTE**: Watson Assistant service is available in IBM Cloud as well as part of IBM Cloud pak for Data. As the result, you can deploy and run your chatbot in public cloud, private cloud, hybird cloud and on-prem.
 
