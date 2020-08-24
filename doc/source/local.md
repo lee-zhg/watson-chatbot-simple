@@ -11,6 +11,7 @@ This document shows how to run the `watson-catbot-simple` application on your lo
 5. [Get Skill ID of Watson Assistant](#5-get-skill-id-of-watson-assistant)
 6. [Modify .env file](#6-modify-env-file)
 7. [Run the application locally](#7-run-the-application-locally)
+8. [Test](#8-test)
 
 ### 1. Clone the repo
 
