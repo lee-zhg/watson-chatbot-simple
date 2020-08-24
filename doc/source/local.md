@@ -1,11 +1,12 @@
 # Run locally
 
-This document shows how to run the `watson-assistant-slots-intro` application on your local machine.
+This document shows how to run the `watson-catbot-simple` application on your local machine.
 
 ## Steps
 
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create IBM Cloud services](#2-create-ibm-cloud-services)
+3. [Get Connection Information of Watson Assistant](#3-get-connection-information-of-watson-assistant)
 3. [Configure Watson Assistant](#3-configure-watson-assistant)
 4. [Get IBM Cloud credentials and add to .env](#4-get-ibm-cloud-services-credentials-and-add-to-env-file)
 5. [Run the application](#5-run-the-application)
