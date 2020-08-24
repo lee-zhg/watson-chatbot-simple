@@ -1,18 +1,20 @@
-[![Build Status](https://travis-ci.com/IBM/watson-assistant-slots-intro.svg?branch=master)](https://travis-ci.com/IBM/watson-assistant-slots-intro)
+# Creating a basic burger ordering chatbot with Watson Assistant service
 
-# Creating a pizza ordering chatbot using Watson Assistant slots feature
+In this repo, you are going to use the basic Watson Assistant features to build a chatbot for ordering burgers, drinks and etc. By having a casual conversation, Watson Natural Language Understanding(NLU) and Watson Natural Language Processing(NLP) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to order, such as type of burgers, size of drinks, dine-in or to-go, and so on.
 
-In this Code Pattern, we will use the Watson Assistant Slots feature to build a chatbot that takes a pizza order. The needed information such as size, type, and ingredient choices can all be entered within one Assistant Node, unlike with previous versions of Assistant.
+After you complete the exercise, they will understand how to:
 
-When the reader has completed this Code Pattern, they will understand how to:
+* Build Watson Assistant components
+    - Intents
+    - Entities
+    - Dialog
+* Create a simple chatbot that can be deployed locally, in IBM Clod Foundry, IBM Kubernetes Service and OpenShift.
 
-* Create a chatbot dialog with Watson Assistant
-* Use the power of Assistant Slots to more efficiently populate data fields
-* Use Assistant Slots to handle various inputs within one Node.
+> **NOTE**: Watson Assistant service is available in IBM Cloud as well as part of IBM Cloud pak for Data. As the result, you can deploy and run your chatbot in public cloud, private cloud, hybird cloud and on-prem.
 
-> **NOTE**: This code pattern has been updated to include instructions for accessing Watson Assistant running on IBM Cloud Pak for Data. These updates can be found in the specific instructions for deploying your app [locally](doc/source/local.md), or deploying your app to [OpenShift on IBM Cloud](doc/source/openshift.md). The main change required is that your application will need additional credentials to access the IBM Cloud Pak for Data cluster that is hosting the Watson Assistant service.
->
 > Click [here](https://www.ibm.com/products/cloud-pak-for-data) for more information about IBM Cloud Pak for Data.
+
+Adopted from IBM code pattern [Creating a pizza ordering chatbot using Watson Assistant slots feature](https://github.com/IBM/watson-assistant-slots-intro).
 
 !["Architecture"](doc/source/images/architecture.png)
 
@@ -20,7 +22,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 
 1. User sends messages to the application (running locally or on IBM Cloud).
 2. The application sends the user message to IBM Watson Assistant service, and displays the ongoing chat in a web page.
-3. Watson Assistant uses the Slots feature to fill out the required fields for a pizza order, and sends requests for additional information back to the running application. Watson Assistant can be provisioned on either IBM Cloud or IBM Cloud Pak for Data.
+3. Watson Assistant uses the NLU and NLP to understand and fulfill your order, and sends requests for additional information back to the running application. Watson Assistant can be provisioned on either IBM Cloud or IBM Cloud Pak for Data.
 
 ## Included Components
 
@@ -30,19 +32,22 @@ When the reader has completed this Code Pattern, they will understand how to:
 
 * [Node.js](https://nodejs.org/): An asynchronous event driven JavaScript runtime, designed to build scalable applications.
 
-## Watch the Video
-
-| Using Cloud Foundry on IBM Cloud | Using IBM Cloud's Kubernetes service |
-| - | - |
-| [![video](https://i.ytimg.com/vi/dTuJU8-FnNM/0.jpg)](https://youtu.be/dTuJU8-FnNM) | [!["video"](https://i.ytimg.com/vi/G-rESweRG84/0.jpg)](https://youtu.be/G-rESweRG84) |
-
 ## Deployment options
 
 Click on one of the options below for instructions on deploying the app.
 
+<!--
 |   |   |   |   |
 | - | - | - | - |
 | [![public](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/cf.png)](doc/source/cf.md) | [![public](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/iks.png)](doc/source/iks.md) | [![openshift](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/openshift.png)](doc/source/openshift.md) | [![local](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/local.png)](doc/source/local.md) |
+-->
+
+|   |   |   |   |
+| - | - | - | - |
+|  |  |  | [![local](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/local.png)](doc/source/local.md) |
+
+
+
 
 ## Assistant Slots Discussion
 
