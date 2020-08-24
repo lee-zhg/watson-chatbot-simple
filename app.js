@@ -47,7 +47,7 @@ const conversation = new AssistantV1({
 });
 
 var conversationSetup = new WatsonConversationSetup(conversation);
-var workspaceJson = JSON.parse(fs.readFileSync('data/watson-pizzeria.json'));
+var workspaceJson = JSON.parse(fs.readFileSync('data/skill-watson-burger-simple.json'));
 var conversationSetupParams = { default_name: DEFAULT_NAME, workspace_json: workspaceJson };
 conversationSetup.setupConversationWorkspace(conversationSetupParams, (err, data) => {
   if (err) {
