@@ -2,6 +2,8 @@
 
 In this repo, you are going to use the basic Watson Assistant features to build a chatbot for ordering burgers, drinks and etc. By having a casual conversation, Watson Natural Language Understanding(NLU) and Watson Natural Language Processing(NLP) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to order, such as type of burgers, size of drinks, dine-in or to-go, and so on.
 
+You can have a simple chatbot up and running in no time. When you access the chatbot on a mobile device, the built-in voice input supports vobal data entry and can enhance the user experience.
+
 After you complete the exercise, you will understand how to:
 
 * Build Watson Assistant components
