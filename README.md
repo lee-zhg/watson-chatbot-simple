@@ -102,15 +102,15 @@ To create an `assistant`,
 
 1. Select `watson-burger-simple` skill.
 
-!["Preview link"](doc/source/images/assistant01.png)
+    !["Preview link"](doc/source/images/assistant01.png)
 
 1. Click `Preview link`.
 
-!["Preview link"](doc/source/images/preview01.png)
+    !["Preview link"](doc/source/images/preview01.png)
 
 1. Click the link under the section `Try it out and share the link` to show the chatbot on a sample web site.
 
-!["Preview link"](doc/source/images/preview02.png)
+    !["Preview link"](doc/source/images/preview02.png)
 
 1. You should have a chatbot similar to the one when you tested in the sample application. Communicate with the chatbot and place orders. It works the same.
 
@@ -133,7 +133,7 @@ When you create a web chat integration, code is generated that calls a script th
 
 1. Select `Burger-Simple`.
 
-!["Preview link"](doc/source/images/assistant02.png)
+    !["Preview link"](doc/source/images/assistant02.png)
 
 1. Click `Integrated web chat` link.
 
@@ -141,7 +141,7 @@ When you create a web chat integration, code is generated that calls a script th
 
 1. Navigate to `Embed` tab.
 
-!["Preview link"](doc/source/images/embed-web-chat01.png)
+    !["Preview link"](doc/source/images/embed-web-chat01.png)
 
 1. When you create a web chat integration, code is generated that calls a script that is written in JavaScript. The script instantiates a unique instance of your assistant. You can then copy and paste the HTML script element into any page or pages on your website where you want users to be able to ask your assistant for help.
 
@@ -185,7 +185,7 @@ When you create a web chat integration, code is generated that calls a script th
 
 1. The chatbot widget is embeded at the bottom-right corner of the web page.
 
-!["Embeded web chat"](doc/source/images/embed-web-chat02.png)
+    !["Embeded web chat"](doc/source/images/embed-web-chat02.png)
 
 1. The chatbot widget is expanded when you click on it. The chatbot window appears on the web page.
 
