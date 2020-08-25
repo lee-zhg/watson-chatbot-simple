@@ -27,23 +27,27 @@ Adopted from IBM code pattern [Creating a pizza ordering chatbot using Watson As
 
 !["Architecture"](doc/source/images/architecture.png)
 
+
 ## Flow
 
 1. User sends messages to the application (running locally or on IBM Cloud).
 2. The application sends the user message to IBM Watson Assistant service, and displays the ongoing chat in a web page.
 3. Watson Assistant uses the NLU and NLP to understand and fulfill your order, and sends requests for additional information back to the running application. Watson Assistant can be provisioned on either IBM Cloud or IBM Cloud Pak for Data.
 
+
 ## Included Components
 
 * [IBM Watson Assistant](https://www.ibm.com/cloud/watson-assistant/): Build, test and deploy a bot or virtual agent across mobile devices, messaging platforms, or even on a physical robot.
+
 
 ## Featured technologies
 
 * [Node.js](https://nodejs.org/): An asynchronous event driven JavaScript runtime, designed to build scalable applications.
 
-## Deploying Sample Application
 
-Click on one of the options below for instructions on deploying the app.
+## Deploying a Sample Application
+
+To deploy a sample application showing how to use `Watson Assistant` APIs,
 
 <!--
 |   |   |   |   |
@@ -64,9 +68,9 @@ An assistant is a cognitive bot that you can customize for your business needs, 
 
 ### Dialog skill
 
-A dialog skill can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
+A `dialog skill` can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
 
-A sample burger-ordering dialog skill was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
+A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
 
 ### Search skill
 
@@ -98,6 +102,8 @@ To create an `assistant`,
 
 1. Select `watson-burger-simple` skill.
 
+!["Preview link"](doc/source/images/assistant01.png)
+
 1. Click `Preview link`.
 
 !["Preview link"](doc/source/images/preview01.png)
@@ -109,6 +115,84 @@ To create an `assistant`,
 1. You should have a chatbot similar to the one when you tested in the sample application. Communicate with the chatbot and place orders. It works the same.
 
 
+## Access the Chatbot from Existing Web Site
+
+Add your assistant to your company website as a web chat widget that can help your customers with common questions and tasks, and can transfer customers to human agents.
+
+When you create a web chat integration, code is generated that calls a script that is written in JavaScript. The script instantiates a unique instance of your assistant. You can then copy and paste the HTML script element into any page or pages on your website where you want users to be able to ask your assistant for help.
+
+>Note: This integration is available to Plus or Premium plan users only.
+
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click on `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Assistants` tab in the left navigation tab.
+
+1. Select `Burger-Simple`.
+
+!["Preview link"](doc/source/images/assistant02.png)
+
+1. Click `Integrated web chat` link.
+
+1. Click `Create`.
+
+1. Navigate to `Embed` tab.
+
+!["Preview link"](doc/source/images/embed-web-chat01.png)
+
+1. When you create a web chat integration, code is generated that calls a script that is written in JavaScript. The script instantiates a unique instance of your assistant. You can then copy and paste the HTML script element into any page or pages on your website where you want users to be able to ask your assistant for help.
+
+1. Copy the script.
+
+1. Open file `sample_homepage.html` in a file editor. The file locates in the root folder of the downloaded repo. This sample HTML file is used to similate a company web page.
+
+1. Past the script under the section `<!-- copied script elements -->`. 
+
+    ```
+    <html>
+    <head>My web site</head>
+        <body>
+            <title>My Test Page</title>
+            <H1>Welcome to my home page</H1> 
+            <!-- <p>Welcome to my home page</p> -->
+            
+            <!-- copied script elements -->
+            <script>
+                window.watsonAssistantChatOptions = {
+                    integrationID: "fdb87f4a-9dcc-4cbd-bd2f-aa383a2b3994", // The ID of this integration.
+                    region: "us-south", // The region your integration is hosted in.
+                    serviceInstanceID: "c905ff27-4a9a-44ca-8610-607094de1ab7", // The ID of your service instance.
+                    onLoad: function(instance) { instance.render(); }
+                };
+                setTimeout(function(){
+                const t=document.createElement('script');
+                t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+                document.head.appendChild(t);
+                });
+            </script>        
+
+        </body>
+    </html>
+
+    ```
+
+1. Save the changes.
+
+1. Open the file `sample_homepage.html` in a browser.
+
+1. The chatbot widget is embeded at the bottom-right corner of the web page.
+
+!["Embeded web chat"](doc/source/images/embed-web-chat02.png)
+
+1. The chatbot widget is expanded when you click on it. The chatbot window appears on the web page.
+
+
+## Modifying the Sample Dialog Skills
+
+A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally. You are going to modify the sample skill slightly to help you understand how the chatbot works.
 
 
 
@@ -116,118 +200,6 @@ To create an `assistant`,
 
 
 
-## Assistant Slots Discussion
-
-The power of Slots is in how it reduces the number of nodes required to implement logic in your Watson Assistant Dialog. Here's a partial conversation Dialog using the old method:
-
-!["Pizza dialog old way"](doc/source/images/pizzaOldWay.png)
-
-And here's a more complete Dialog using slots, which puts all the logic in the `Pizza ordering` Node.
-
-!["Pizza dialog new way"](doc/source/images/pizzaNewWay.png)
-
-Open up the Dialog, and we'll have a look:
-
-!["Pizza dialog begin"](doc/source/images/pizzaDialogBegin.png)
-
-Each slot represents a field to be populated in the chatbot: ``pizza_size``, ``pizza_type``, and ``pizza_topings``.
-If they are not present, the user will be prompted, starting at the top, until all are populated via
-the associated variable (``$pizza_size``, ``$pizza_type``, etc).
-
-Click on the Configure !["icon"](doc/source/images/pizzaGearIcon.png) to add more functionality:
-
-!["Pizza config 3 toppings"](doc/source/images/pizzaConfig3pizza_toppingsTop.png)
-
-Here, we can add a response for when this slot is filled (Found).
-Logic can be used for one ingredient:
-
-!["Pizza config 3 one topping"](doc/source/images/pizzaConfig3Pizza_toppingsMid1ingredient.png)
-
-or if there are greater than one ingredient added:
-
-!["Pizza config 3 >1 topping"](doc/source/images/pizzaConfig3Pizza_toppingsMidBotGreater1.png)
-
-We've added logic to address yes or no answers to the question "Any extra toppings?":
-
-!["Pizza config 3 confirm not found"](doc/source/images/pizzaConfig3NewNotFoundconfirm.png)
-
-Click on the 3 circles !["icon"](doc/source/images/pizza3circles.png) and choose `Open JSON editor` to edit the json directly:
-
-!["Pizza config edit JSON"](doc/source/images/pizzaConfig3NotFoundJson.png)
-
-Here, we've set an empty value for the context: {"pizza_topings"} field, so that we can exit
-the loop by filling this slot.
-
-Finally, we add responses for once the slots are all filled:
-
-!["Pizza order finish"](doc/source/images/pizzaOrderFinish1.png)
-
-We start with the case where we have "pizza_toppings", by detecting that the
-array has size>0.
-Here, we first handle the case where the optional "pizza_place" slot
-is filled, and then handle the case where it is not.
-
-!["Pizza order finish no place"](doc/source/images/pizzaOrderFinish2.png)
-
-Finally, we add a handler for the case where the user's answers to a prompt
-is not found. We've added a handler for the intent "help".
-
-!["Pizza handle Help"](doc/source/images/pizzaHandleHelp.png)
-
-We have a dialog node to handle the intent `#reset` which will reset all fields to `null`:
-
-!["Pizza reset node"](doc/source/images/pizzaResetNode.png)
-
-## Assistant Example
-
-Let's look at an example conversation and the associated json.
-With your Watson Pizzeria running, start a dialog and begin with
-telling the Pizza Bot you want a large pizza:
-
-![](doc/source/images/pizzaEX1orderLarge.png)
-
-The 'User Input' shows you the "input"{"text"} field, as well as come of the
-"context" that is mostly used for Assistant to keep track of internal state.
-Scroll Down to `Watson Understands` and look at `intents`:
-
-![](doc/source/images/pizzaEX2WatsonUnderstandsOrderSize.png)
-
-Note that the intent for "order" is detected. The entity "pizza_size" is now
-a slot that is filled out.
-We still have 2 required slots, "pizza_type" and "pizza_toppings". The user will
-be prompted until these are filled out:
-
-![](doc/source/images/pizzaEX3fillSlots.png)
-
-We can now see that all required slots are filled:
-
-![](doc/source/images/pizzaEX4slotsFilled.png)
-
-What if we wanted to tell the Watson Pizzeria that we wanted to
-eat the pizza there, in the restaurant? Too late! the slot for
-"pizza_place" is optional, so the user won't be prompted for it, and
-once the required slots are filled, we exit the "Pizza Ordering" dialog
-node. The user needs to fill out optional slots first.
-Type reset to start again and test this by adding the phrase "to eat there...":
-
-![](doc/source/images/pizzaEX5eatThere.png)
-
-## Troubleshooting
-
-* Deploy using Cloud Foundry `cf push` gives:
-
-``FAILED
-Could not find service <Watson_service> to bind to <IBM_Cloud_application>``
-
-If you name your service `wcsi-conversation-service`, this should work.
-When you use `cf push`, it is trying to bind to the services listed in the `manifest.yml`.
-
-So, there are 2 ways you can get this to work:
-
-* Change the names of your IBM Cloud services to match the names in the manifest.
-* Change the names in the manifest to match the names of your IBM Cloud services.
-
->NOTE: The `Deploy to IBM Cloud` button solves this issue by creating the services on the fly (with the correct names).
 
 ## License
 
