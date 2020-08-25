@@ -1,4 +1,4 @@
-# Creating a basic burger ordering chatbot with Watson Assistant service
+# Basic Burger Ordering Chatbot with Watson Assistant Service
 
 In this repo, you are going to use the basic Watson Assistant features to build a chatbot for ordering burgers, drinks and etc. By having a casual conversation, Watson Natural Language Understanding(NLU) and Watson Natural Language Processing(NLP) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to order, such as type of burgers, size of drinks, dine-in or to-go, and so on.
 
