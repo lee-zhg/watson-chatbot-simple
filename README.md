@@ -41,7 +41,7 @@ Adopted from IBM code pattern [Creating a pizza ordering chatbot using Watson As
 
 * [Node.js](https://nodejs.org/): An asynchronous event driven JavaScript runtime, designed to build scalable applications.
 
-## Deployment options
+## Deploying Sample Application
 
 Click on one of the options below for instructions on deploying the app.
 
@@ -54,6 +54,64 @@ Click on one of the options below for instructions on deploying the app.
 |   |   |   |   |
 | - | - | - | - |
 |  |  |  | [![local](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/local.png)](doc/source/local.md) |
+
+
+## Creating an Assistant
+
+The `assistant` is a fully hosted chatbot that is managed by IBM Cloud. It frees you from worrying about deploying and maintaining infrastructure to support the bot. It prrovides an alternative to host a chatbot without any programming.
+
+An assistant is a cognitive bot that you can customize for your business needs, and deploy across multiple channels to bring help to your customers where and when they need it. Skills An assistant routes your customer queries to a skill, which then provides the appropriate response. 
+
+### Dialog skill
+
+A dialog skill can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
+
+A sample burger-ordering dialog skill was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
+
+### Search skill
+
+A search skill leverages information from existing corporate knowledge bases or other collections of content authored by subject matter experts to address unanticipated or more nuanced customer inquiries.
+
+>Note: Search skill is available to Plus or Premiums plan only.
+
+### Creating an Assistant
+
+To create an `assistant`,
+
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click on `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Assistants` tab in the left navigation tab.
+
+1. Click `Create assistant`.
+
+1. Enter a name, for example `Burger-Simple`.
+
+1. Make sure that the `Enable the preview` checkbox is selected.
+
+1. Click `Create assistant`.
+
+1. Select `Add dialog skill`.
+
+1. Select `watson-burger-simple` skill.
+
+1. Click `Preview link`.
+
+!["Preview link"](doc/source/images/preview01.png)
+
+1. Click the link under the section `Try it out and share the link` to show the chatbot on a sample web site.
+
+!["Preview link"](doc/source/images/preview02.png)
+
+1. You should have a chatbot similar to the one when you tested in the sample application. Communicate with the chatbot and place orders. It works the same.
+
+
+
+
+
 
 
 
