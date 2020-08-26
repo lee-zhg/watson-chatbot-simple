@@ -28,7 +28,7 @@ Adopted from IBM code pattern [Creating a pizza ordering chatbot using Watson As
 !["Architecture"](doc/source/images/architecture.png)
 
 
-## Flow
+## Use Case Flow
 
 1. User sends messages to the application (running locally or on IBM Cloud).
 2. The application sends the user message to IBM Watson Assistant service, and displays the ongoing chat in a web page.
@@ -44,8 +44,9 @@ Adopted from IBM code pattern [Creating a pizza ordering chatbot using Watson As
 
 * [Node.js](https://nodejs.org/): An asynchronous event driven JavaScript runtime, designed to build scalable applications.
 
+## Exercise Flow
 
-## Deploying a Sample Application
+### Step 1 - Deploying a Sample Application
 
 To deploy a sample application showing how to use `Watson Assistant` APIs,
 
@@ -60,25 +61,25 @@ To deploy a sample application showing how to use `Watson Assistant` APIs,
 |  |  |  | [![local](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/local.png)](doc/source/local.md) |
 
 
-## Creating an Assistant
+### Step 2 - Creating an Assistant
 
 The `assistant` is a fully hosted chatbot that is managed by IBM Cloud. It frees you from worrying about deploying and maintaining infrastructure to support the bot. It prrovides an alternative to host a chatbot without any programming.
 
 An assistant is a cognitive bot that you can customize for your business needs, and deploy across multiple channels to bring help to your customers where and when they need it. Skills An assistant routes your customer queries to a skill, which then provides the appropriate response. 
 
-### Dialog skill
+#### Dialog skill
 
 A `dialog skill` can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
 
 A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
 
-### Search skill
+#### Search skill
 
 A search skill leverages information from existing corporate knowledge bases or other collections of content authored by subject matter experts to address unanticipated or more nuanced customer inquiries.
 
 >Note: Search skill is available to Plus or Premiums plan only.
 
-### Creating an Assistant
+#### Creating an Assistant
 
 To create an `assistant`,
 
@@ -86,7 +87,7 @@ To create an `assistant`,
 
 1. On the dashboard, find and open your `Watson Assistant` service instance.
 
-1. Click on `Launch Watson Assistant` on the `Manage` tab.
+1. Click `Launch Watson Assistant` on the `Manage` tab.
 
 1. Select the `Assistants` tab in the left navigation tab.
 
@@ -115,7 +116,7 @@ To create an `assistant`,
 1. You should have a chatbot similar to the one when you tested in the sample application. Communicate with the chatbot and place orders. It works the same.
 
 
-## Access the Chatbot from Existing Web Site
+### Step 3 - Access the Chatbot from Existing Web Site
 
 Add your assistant to your company website as a web chat widget that can help your customers with common questions and tasks, and can transfer customers to human agents.
 
@@ -127,7 +128,7 @@ When you create a web chat integration, code is generated that calls a script th
 
 1. On the dashboard, find and open your `Watson Assistant` service instance.
 
-1. Click on `Launch Watson Assistant` on the `Manage` tab.
+1. Click `Launch Watson Assistant` on the `Manage` tab.
 
 1. Select the `Assistants` tab in the left navigation tab.
 
@@ -190,11 +191,197 @@ When you create a web chat integration, code is generated that calls a script th
 1. The chatbot widget is expanded when you click on it. The chatbot window appears on the web page.
 
 
-## Modifying the Sample Dialog Skills
+### Step 4 - Modifying the Sample Dialog Skills
 
-A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally. You are going to modify the sample skill slightly to help you understand how the chatbot works.
+A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally. In this section, you are going to modify the sample skill slightly to help you understand how the chatbot works.
 
+The natural-language processing for the Watson Assistant service is defined in a dialog skill, which is a container for all of the artifacts that define a conversation flow.
 
+#### 4.1 Intents
+
+Intents are purposes or goals that are expressed in a customer's input, such as answering a question or processing a bill payment. By recognizing the intent expressed in a customer's input, the Watson Assistant service can choose the correct dialog flow for responding to it.
+
+##### 4.1.1 Plan the intents for your application.
+
+Consider what your customers might want to do, and what you want your application to be able to handle on their behalf. For example, you might want your application to help your customers make a purchase. If so, you can add a #buy_something intent. (The # that is added as a prefix to the intent name helps to clearly identify it as an intent.)
+
+##### 4.1.2 Teach Watson about your intents.
+
+After you decide which business requests that you want your application to handle for your customers, you must teach Watson about them. For each business goal (such as #buy_something), you must provide at least 5 examples of utterances that your customers typically use to indicate their goal. For example, I want to make a purchase.
+
+Ideally, find real-world user utterance examples that you can extract from existing business processes. The user examples should be tailored to your specific business. For example, if you are an insurance company, a user example might look more like this, I want to buy a new XYZ insurance plan.
+
+The examples that you provide are used by your assistant to build a machine learning model that can recognize the same and similar types of utterances and map them to the appropriate intent.
+
+`intent` is verb in a natural language analogy.
+
+##### 4.1.3 Adding utterance to #order intent
+
+To add utterance to `#order` intent,
+
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Skills` tab in the left navigation tab.
+
+1. Select `watson-burger-simple` tile.
+
+1. `Intents` is selected by default.
+
+1. Select `#order` intent on the right.
+
+1. Enter `I like to have a cheeseburger` in the `User example` field.
+
+   !["Intent Example"](doc/source/images/intent_example01.png)
+
+1. Click `Add example`. 
+
+`watson-burger-simple` was developed as a basic skill to order burgers, drinks and etc. `#order` is the main `intent` along with the typical house-keeping intents, `#exit`, `#help` and `#reset`.
+
+You can add as many utterance examples as you like, but minimal 5 examples. In this skill design, the objective is to catch the `#order` intent as well as to identify the food category, such as burger, drink, shake and so on. The utterance examples are provided to meet the objective.
+
+You may redesign the skill if you like to implement it differently.
+
+#### 4.2 entities
+
+Entities represent information in the user input that is relevant to the user's purpose.
+
+If intents represent verbs (the action a user wants to do), entities represent nouns (the object of, or the context for, that action). For example, when the intent is to get a weather forecast, the relevant location and date entities are required before the application can return an accurate forecast.
+
+Recognizing entities in the user's input helps you to craft more useful, targeted responses. For example, you might have a #buy_something intent. When a user makes a request that triggers the #buy_something intent, the assistant's response should reflect an understanding of what the something is that the customer wants to buy. You can add a @product entity, and then use it to extract information from the user input about the product that the customer is interested in. (The @ prepended to the entity name helps to clearly identify it as an entity.)
+
+You can add multiple responses to your dialog tree with wording that differs based on the @product value that is detected in the user's request.
+
+`entity` is noun in a natural language analogy.
+
+##### 4.2.1 Dictionary-based method
+
+Your assistant looks for terms in the user input that match the values, synonyms, or patterns you define for the entity.
+
+* Synonym entity: You define a category of terms as an entity (color), and then one or more values in that category (blue). For each value you specify a bunch of synonyms (aqua, navy). You can also pick synonyms to add from recommendations made to you by Watson.
+
+    At run time, your assistant recognizes terms in the user input that exactly match the values or synonyms that you defined for the entity as mentions of that entity.
+
+* Pattern entity: You define a category of terms as an entity (contact_info), and then one or more values in that category (email). For each value, you specify a regular expression that defines the textual pattern of mentions of that value type. For an email entity value, you might want to specify a regular expression that defines a text@text.com pattern.
+
+    At run time, your assistant looks for patterns matching your regular expression in the user input, and identifies any matches as mentions of that entity.
+
+* System entity: Synonym entities that are prebuilt for you by IBM. They cover commonly used categories, such as numbers, dates, and times. You simply enable a system entity to start using it.
+
+##### 4.2.2 Annotation-based method
+
+When you define an annotation-based entity, which is also referred to as a contextual entity, a model is trained on both the annotated term and the context in which the term is used in the sentence you annotate. This new contextual entity model enables your assistant to calculate a confidence score that identifies how likely a word or phrase is to be an instance of an entity, based on how it is used in the user input.
+
+* Contextual entity: First, you define a category of terms as an entity (product). Next, you go to the Intents page and mine your existing intent user examples to find any mentions of the entity, and label them as such. For example, you might go to the #buy_something intent, and find a user example that says, I want to buy a Coach bag. You can label Coach bag as a mention of the @product entity.
+
+    For training purposes, the term you annotated, Coach bag, is added as a value of the @product entity.
+
+    At run time, your assistant evaluates terms based on the context in which they are used in the sentence only. If the structure of a user request that mentions the term matches the structure of an intent user example in which a mention is labeled, then your assistant interprets the term to be a mention of that entity type. For example, the user input might include the utterance, I want to buy a Gucci bag. Due to the similarity of the structure of this sentence to the user example that you annotated (I want to buy a Coach bag), your assistant recognizes Gucci bag as a @product entity mention.
+
+    When a contextual entity model is used for an entity, your assistant does not look for exact text or pattern matches for the entity in the user input, but focuses instead on the context of the sentence in which the entity is mentioned.
+
+    If you choose to define entity values by using annotations, add at least 10 annotations per entity to give the contextual entity model enough data to be reliable.
+
+##### 4.2.3 Modifying Entity @beverage
+
+To modify entity `@beverage`,
+
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Skills` tab in the left navigation tab.
+
+1. Select `watson-burger-simple` tile.
+
+1. Select `Entities` in the left navigation pane.
+
+1. Select `@beverage` in the right window.
+
+1. Enter `milk` in the `value` field.
+
+1. Enter `low fat milk` in the `Synonyms` field.
+
+1. Optionally, you can add additional synonyms.
+
+   !["Intent Example"](doc/source/images/entity01.png)
+
+1. Click `Add value`.
+
+Skill `watson-burger-simple` was designed to process orders in two phases. In the initial phase, it catches the user `intent` and also identifies food category. 
+
+In the next phase, the chatbot collects information for individual food category via different dialog path. In the above `entity` example, it works to identify the drink type
+
+`Entity` helps identify all required information until you are ready to complete an order. In the drink example, entity `@beverage` helps identify drink type information, and entity `@mac_size` helps identify drink size information. You can have additional `entity` to collect other information.
+
+#### 4.3 Dialog
+
+The dialog uses the intents that are identified in the user's input, plus context from the application, to interact with the user and ultimately provide a useful response.
+
+The dialog matches intents (what users say) to responses (what the bot says back). The response might be the answer to a question such as Where can I get some gas? or the execution of a command, such as turning on the radio. The intent and entity might be enough information to identify the correct response, or the dialog might ask the user for more input that is needed to respond correctly. For example, if a user asks, Where can I get some food? you might want to clarify whether they want a restaurant or a grocery store, to dine in or take out, and so on. You can ask for more details in a text response and create one or more child nodes to process the new input.
+
+The dialog is represented graphically in Watson Assistant as a tree. Create a branch to process each intent that you want your conversation to handle. A branch is composed of multiple nodes.
+
+##### 4.3.1 Dialog nodes
+
+Each dialog node contains, at a minimum, a condition and a response.
+
+* Condition: Specifies the information that must be present in the user input for this node in the dialog to be triggered. The information is typically a specific intent. It might also be an entity type, an entity value, or a context variable value. See Conditions for more information.
+
+* Response: The utterance that your assistant uses to respond to the user. The response can also be configured to show an image or a list of options, or to trigger programmatic actions. See Responses for more information.
+
+You can think of the node as having an if/then construction: if this condition is true, then return this response.
+
+!["Intent Example"](doc/source/images/dialog_node01.png)
+
+##### 4.3.2 Dialog flow
+
+The dialog that you create is processed by your assistant from the first node in the tree to the last.
+
+!["Intent Example"](doc/source/images/dialog_flow01.png)    
+
+As it travels down the tree, if your assistant finds a condition that is met, it triggers that node. It then moves along the triggered node to check the user input against any child node conditions. As it checks the child nodes it moves again from the first child node to the last.
+
+Your assistant continues to work its way through the dialog tree from first to last node, along each triggered node, then from first to last child node, and along each triggered child node until it reaches the last node in the branch it is following.
+
+!["Intent Example"](doc/source/images/dialog_flow02.png)    
+
+When you start to build the dialog, you must determine the branches to include, and where to place them. The order of the branches is important because nodes are evaluated from first to last. The first root node whose condition matches the input is used; any nodes that come later in the tree are not triggered.
+
+When your assistant reaches the end of a branch, or cannot find a condition that evaluates to true from the current set of child nodes it is evaluating, it jumps back out to the base of the tree. And once again, your assistant processes the root nodes from first to the last. If none of the conditions evaluates to true, then the response from the last node in the tree, which typically has a special anything_else condition that always evaluates to true, is returned.
+
+You can disrupt the standard first-to-last flow in the following ways:
+
+* By customizing what happens after a node is processed. For example, you can configure a node to jump directly to another node after it is processed, even if the other node is positioned earlier in the tree. 
+
+* By configuring conditional responses to jump to other nodes. 
+
+* By configuring digression settings for dialog nodes. Digressions can also impact how users move through the nodes at run time. If you enable digressions away from most nodes and configure returns, users can jump from one node to another and back again more easily. 
+
+##### 4.3.3 Exploring Dialog Flow of Skill watson-burger-simple
+
+The dialog flow of `watson-burger-simple` skill has 4 root nodes that match their condition to the 4 `intents` that you defined in the skill. When the chatbot catches your intent through a conversation, it continues the comversation via one of the node branches.
+
+!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow01.png)
+
+Since `watson-burger-simple` skill is designed for food ordering, most of actions are defined in `Order` node branch. The other 3 root nodes do not have child.
+
+Select the `Order` node, its properies show up in the pop-up wiindow on the right. The chatbot enters this node only when it identifies `@order` intent.
+
+Expand the `Order` node branch. It has 5 child nodes.
+
+!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow02.png)
+
+Select the `else` child node. As the node label indicates, this is a catch-all node. Just like the `else` in a `if else` statement. If the condition does not satify all nodes above, the flow will reach this node. 
+
+!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow03.png)
+
+The `else` node response with message `The chatbot is not trained to take this order` and then jumps to the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
 
 
 
