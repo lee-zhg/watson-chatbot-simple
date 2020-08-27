@@ -365,51 +365,53 @@ You can disrupt the standard first-to-last flow in the following ways:
 
 ##### 4.3.3 Exploring Dialog Flow of Skill watson-burger-simple
 
-The dialog flow of `watson-burger-simple` skill has 4 root nodes that match their condition to the 4 `intents` that you defined in the skill. When the chatbot catches your intent through a conversation, it continues the comversation via one of the node branches.
+In this section, you explore dialog flow of the skill `watson-burger-simple`.
 
-!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow01.png)
+* The dialog flow of `watson-burger-simple` skill has 4 root nodes that match their condition to the 4 `intents` that you defined in the skill. When the chatbot catches your intent through a conversation, it continues the comversation via one of the node branches.
 
-Since `watson-burger-simple` skill is designed for food ordering, most of actions are defined in `Order` node branch. The other 3 root nodes do not have child.
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow01.png)
 
-Select the `Order` node, its properies show up in the pop-up wiindow on the right. The chatbot enters this node only when it identifies `@order` intent.
+    Since `watson-burger-simple` skill is designed for food ordering, most of actions are defined in `Order` node branch. The other 3 root nodes do not have child.
 
-Expand the `Order` node branch. It has 5 child nodes.
+* Select the `Order` node, its properies show up in the pop-up wiindow on the right. The chatbot enters this node only when it identifies `@order` intent.
 
-!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow02.png)
+* Expand the `Order` node branch. It has 5 child nodes.
 
-Select the `else` child node. As the node label indicates, this is a catch-all node. Just like the `else` in a `if else` statement. If the condition does not satify all nodes above, the flow will reach this node. 
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow02.png)
 
-!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow03.png)
+* Select the `else` child node. As the node label indicates, this is a catch-all node. Just like the `else` in a `if else` statement. If the condition does not satify all nodes above, the flow will reach this node. 
 
-The `else` node response with message `The chatbot is not trained to take this order` and then jumps to the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow03.png)
 
-Select `order burger` child node. Its properies show up in the pop-up wiindow on the right.
+    The `else` node responds with message `The chatbot is not trained to take this order` and then jumps to the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
 
-!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow04.png)
+* Select `order burger` child node. Its properies show up in the pop-up wiindow on the right.
 
-In order to have the `order burger` child node triggered, two condition must be met.
-* Intent is `#order`
-* Entity `@category` is `burger`
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow04.png)
 
-The child node collects two pieces of information.
-* Entity `@burger` which is used to identify the burger type
-* Entity `@mac_place` which is used to identify the dining location, dine-in or to-go.
+* In order to have the `order burger` child node triggered, two condition must be met.
+    - Intent is `#order`
+    - Entity `@category` has `burger` as its content
 
-To help reduce the number of nodes, two slots are used to collect both inforrmation on a single node. Without using slots, two nodes would be required to collect two pieces of information.
+* The child node collects two pieces of information.
+    - Entity `@burger` which is used to identify the burger type
+    - Entity `@mac_place` which is used to identify the dining location, dine-in or to-go.
 
-Click the `configuration` icon to the right of `@burger` to open its slot property.
+* To help reduce the number of nodes, two slots are used to collect both inforrmation on a single node. Without using slots, two nodes would be required to collect two pieces of information.
 
-!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow05.png)
+* Click the `configuration` icon to the right of `@burger` to open its slot property.
 
-It checks if the entity `@burger` has `burger type` information. If the information is not available, the chatbot will prompt user with message `What type of burger do you want (big mac, cheeseburger, double cheeseburger and etc)?`. When the entity `@burger` has `burger type` information, it stores data in context variable `$mac_burger`.
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow05.png)
 
-The second slot works similarly. It checks if the entity `@mac_place` has `dining location` information. If the information is not available, the chatbot will prompt user with message `Is this for dine in or to go?`. When the entity `@mac_place` has `dining location` information, it stores data in context variable `$mac_place`.
+* It checks if the entity `@burger` has `burger type` information. If the information is not available, the chatbot will prompt user with message `What type of burger do you want (big mac, cheeseburger, double cheeseburger and etc)?`. When the entity `@burger` has `burger type` information, it stores data in context variable `$mac_burger`.
 
-When both entity `$mac_burger` and `$mac_place` are populated, you have the burger type as well as dining location information. At this time, you can complete the order. The chatbot displays message `Enjoy your $mac_burger. We are preparing your $mac_place order`. Note, context variable `$mac_burger` and `$mac_place` are used for meaningful message in the current context.
+* The second slot works similarly. It checks if the entity `@mac_place` has `dining location` information. If the information is not available, the chatbot will prompt user with message `Is this for dine in or to go?`. When the entity `@mac_place` has `dining location` information, it stores data in context variable `$mac_place`.
 
-When you develop an application that combines a chatbot and order processing, at this point you can pass both context variables `$mac_burger` and `$mac_place` to your order processing module of your application. Of course, a real food ordering application will require and collect additional information. But, the same principle applies. The sample application embedded in the repo sheds light on how you may develop an application taking advantage of Watson chatbot.
+* When both entity `$mac_burger` and `$mac_place` are populated, you have the burger type as well as dining location information. At this time, you can complete the order. The chatbot displays message `Enjoy your $mac_burger. We are preparing your $mac_place order`. Note, context variable `$mac_burger` and `$mac_place` are used for meaningful message in the current context.
 
-When the `order burger` child node reaches its end, it'll move to the following child node if you don't do anything. Because the current order has completed, you like to reset the environment context and be ready to take the next order. So, the last configuration of the `order burger` child node is to `Jumps to` the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
+    When you develop an application that combines a chatbot and order processing, at this point you can pass both context variables `$mac_burger` and `$mac_place` to your order processing module of your application. Of course, a real food ordering application will require and collect additional information. But, the same principle applies. The sample application embedded in the repo sheds light on how you may develop an application taking advantage of Watson chatbot.
+
+* When the `order burger` child node reaches its end, it'll move to the following child node if you don't do anything. Because the current order has completed, you like to reset the environment context and be ready to take the next order. So, the last configuration of the `order burger` child node is to `Jumps to` the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
 
 ##### 4.3.4 Try it
 
