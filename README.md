@@ -383,9 +383,69 @@ Select the `else` child node. As the node label indicates, this is a catch-all n
 
 The `else` node response with message `The chatbot is not trained to take this order` and then jumps to the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
 
+Select `order burger` child node. Its properies show up in the pop-up wiindow on the right.
 
+!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow04.png)
 
+In order to have the `order burger` child node triggered, two condition must be met.
+* Intent is `#order`
+* Entity `@category` is `burger`
 
+The child node collects two pieces of information.
+* Entity `@burger` which is used to identify the burger type
+* Entity `@mac_place` which is used to identify the dining location, dine-in or to-go.
+
+To help reduce the number of nodes, two slots are used to collect both inforrmation on a single node. Without using slots, two nodes would be required to collect two pieces of information.
+
+Click the `configuration` icon to the right of `@burger` to open its slot property.
+
+!["watson-burger-simple Example"](doc/source/images/sample_dialog_flow05.png)
+
+It checks if the entity `@burger` has `burger type` information. If the information is not available, the chatbot will prompt user with message `What type of burger do you want (big mac, cheeseburger, double cheeseburger and etc)?`. When the entity `@burger` has `burger type` information, it stores data in context variable `$mac_burger`.
+
+The second slot works similarly. It checks if the entity `@mac_place` has `dining location` information. If the information is not available, the chatbot will prompt user with message `Is this for dine in or to go?`. When the entity `@mac_place` has `dining location` information, it stores data in context variable `$mac_place`.
+
+When both entity `$mac_burger` and `$mac_place` are populated, you have the burger type as well as dining location information. At this time, you can complete the order. The chatbot displays message `Enjoy your $mac_burger. We are preparing your $mac_place order`. Note, context variable `$mac_burger` and `$mac_place` are used for meaningful message in the current context.
+
+When you develop an application that combines a chatbot and order processing, at this point you can pass both context variables `$mac_burger` and `$mac_place` to your order processing module of your application. Of course, a real food ordering application will require and collect additional information. But, the same principle applies. The sample application embedded in the repo sheds light on how you may develop an application taking advantage of Watson chatbot.
+
+When the `order burger` child node reaches its end, it'll move to the following child node if you don't do anything. Because the current order has completed, you like to reset the environment context and be ready to take the next order. So, the last configuration of the `order burger` child node is to `Jumps to` the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
+
+##### 4.3.4 Try it
+
+So far, you have tested the chatbot via a sample Node.js application and `assistant` preview (a fully hosted chatbot that is managed by IBM Cloud). In this section, you test the chatbot via `Try it` link which is an integrated component of Watson Assistant development environment in IBM Cloud.
+
+`Try it` provides a quick testing option while you develop a skill.
+
+!["watson-burger-simple Example"](doc/source/images/try_it01.png)
+
+To test the chatbot via `try it` link,
+
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Skills` tab in the left navigation tab.
+
+1. Select `watson-burger-simple` tile to open it.
+
+1. Click `Try it` link.
+
+1. "Try it out` window open on the right. You should be familar to the chatbot UI now.
+
+1. Order a cheeseburger by entering `have a cheeseburger to go`.
+
+    !["watson-burger-simple Example"](doc/source/images/try_it02.png)
+
+1. If you recall, ordering a burger requires `both burger` type and `dining location`. Since you provided both information when you make order, the chatbot grab both information and complete the order. It displays message `Enjoy your cheeseburger. We are preparing your to-go order`. 
+
+10. The `intent` and `entity` iinformation in the current context are available on the `Try it` UI. As the above screen shot shows, the chatbot identified
+* `#order` as intent
+* entity `@category` as `burger`. This entity identifies `food category`.
+* entity `@burger` as `cheeseburger`. This entity identifies `burger type`.
+* entity `@mac_place` as `to-go`. This entity identified `dining location`.
 
 
 ## License
