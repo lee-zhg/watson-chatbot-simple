@@ -191,7 +191,7 @@ When you create a web chat integration, code is generated that calls a script th
 1. The chatbot widget is expanded when you click on it. The chatbot window appears on the web page.
 
 
-### Step 4 - Modifying the Sample Dialog Skills
+### Step 4 - Modifying Sample Dialog Skills
 
 A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally. In this section, you are going to modify the sample skill slightly to help you understand how the chatbot works.
 
