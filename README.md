@@ -67,19 +67,19 @@ The `assistant` is a fully hosted chatbot that is managed by IBM Cloud. It frees
 
 An assistant is a cognitive bot that you can customize for your business needs, and deploy across multiple channels to bring help to your customers where and when they need it. Skills An assistant routes your customer queries to a skill, which then provides the appropriate response. 
 
-#### Dialog skill
+#### 2.1 Dialog skill
 
 A `dialog skill` can understand and address questions or requests that your customers typically need help with. You provide information about the subjects or tasks your users ask about, and how they ask about them, and the product dynamically builds a machine learning model that is tailored to understand the same and similar user requests.
 
 A sample burger-ordering `dialog skill` was imported to your `Watson Assistant` service instance when you deployed and run the sample application locally.
 
-#### Search skill
+#### 2.2 Search skill
 
 A search skill leverages information from existing corporate knowledge bases or other collections of content authored by subject matter experts to address unanticipated or more nuanced customer inquiries.
 
 >Note: Search skill is available to Plus or Premiums plan only.
 
-#### Creating an Assistant
+#### 2.3 Creating an Assistant
 
 To create an `assistant`,
 
@@ -245,7 +245,7 @@ You can add as many utterance examples as you like, but minimal 5 examples. In t
 
 You may redesign the skill if you like to implement it differently.
 
-#### 4.2 entities
+#### 4.2 Entities
 
 Entities represent information in the user input that is relevant to the user's purpose.
 
@@ -363,7 +363,7 @@ You can disrupt the standard first-to-last flow in the following ways:
 
 * By configuring digression settings for dialog nodes. Digressions can also impact how users move through the nodes at run time. If you enable digressions away from most nodes and configure returns, users can jump from one node to another and back again more easily. 
 
-##### 4.3.3 Exploring Dialog Flow of Skill watson-burger-simple
+##### 4.3.3 Reviewing Dialog Flow of Skill watson-burger-simple
 
 In this section, you explore dialog flow of the skill `watson-burger-simple`.
 
@@ -413,7 +413,60 @@ In this section, you explore dialog flow of the skill `watson-burger-simple`.
 
 * When the `order burger` child node reaches its end, it'll move to the following child node if you don't do anything. Because the current order has completed, you like to reset the environment context and be ready to take the next order. So, the last configuration of the `order burger` child node is to `Jumps to` the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
 
-##### 4.3.4 Try it
+##### 4.3.4 Modifying Dialog Flow of Skill watson-burger-simple
+
+Now, you should have a basic understanding of `intent` and `entity`, and how `dialog` defines the chatbot flow. In this section, you add a new slot to the child node `order burger` which identifies and collects `burger size` information.
+
+1. Login to [IBM Cloud](https://cloud.ibm.com).
+
+1. On the dashboard, find and open your `Watson Assistant` service instance.
+
+1. Click `Launch Watson Assistant` on the `Manage` tab.
+
+1. Select the `Skills` tab in the left navigation tab.
+
+1. Select `watson-burger-simple` tile to open it.
+
+1. Select `Dialog` in the left pane.
+
+1. Expand the `Order` node.
+
+1. Select `Order burger` node. The node properties window opens on the right.
+
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow06.png)
+
+1. Click `Add slot +`. A new blank slot is added to the list.
+
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow07.png)
+
+1. On the new blank slot entry, click `Enter condition` field.
+
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow08.png)
+
+1. Select `Filter by @entity` option.
+
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow09.png)
+
+1. Then, select `@mac_size  medium, small, large` option.
+
+1. Enter `$mac_burger_size` in the `Save it as` field of the new slot entry.
+
+1. Enter `Please select your burger size (large, medium or small)` in the `If not present, ask` field of the new slot entry.
+
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow10.png)
+
+1. Hover your mouse curser over `3` of the new slot entry and select `Move up`. This moves the new slot entry to the 2nd place of the list.
+
+1. Click `configuration` icon of the new slot entry to open its properties window.
+
+    !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow11.png)
+
+1. The slot properties can be viewed and modified.
+
+1. Click `Save` if any change were made.
+
+
+#### 4.4 Try it
 
 So far, you have tested the chatbot via a sample Node.js application and `assistant` preview (a fully hosted chatbot that is managed by IBM Cloud). In this section, you test the chatbot via `Try it` link which is an integrated component of Watson Assistant development environment in IBM Cloud.
 
@@ -437,17 +490,24 @@ To test the chatbot via `try it` link,
 
 1. "Try it out` window open on the right. You should be familar to the chatbot UI now.
 
-1. Order a cheeseburger by entering `have a cheeseburger to go`.
+1. Order a cheeseburger by entering `have a large cheeseburger to go`.
 
     !["watson-burger-simple Example"](doc/source/images/try_it02.png)
 
-1. If you recall, ordering a burger requires `both burger` type and `dining location`. Since you provided both information when you make order, the chatbot grab both information and complete the order. It displays message `Enjoy your cheeseburger. We are preparing your to-go order`. 
+1. The original `order burger` node required both `burger type` and `dining location`. Then, you added a third required information as `burger size` in the last exercise. Since you provided all 3 required information when you make order, the chatbot grab all required information and complete the order. It displays message `Enjoy your cheeseburger. We are preparing your to-go order`. 
 
-10. The `intent` and `entity` iinformation in the current context are available on the `Try it` UI. As the above screen shot shows, the chatbot identified
-* `#order` as intent
-* entity `@category` as `burger`. This entity identifies `food category`.
-* entity `@burger` as `cheeseburger`. This entity identifies `burger type`.
-* entity `@mac_place` as `to-go`. This entity identified `dining location`.
+10. The `intent` and `entity` information in the current context are available on the `Try it` UI. As the above screen shot shows, the chatbot identified
+    * `#order` as intent
+    * entity `@mac_size` as `large`. This entity identifies `burger size`.
+    * entity `@category` as `burger`. This entity identifies `food category`.
+    * entity `@burger` as `cheeseburger`. This entity identifies `burger type`.
+    * entity `@mac_place` as `to-go`. This entity identified `dining location`.
+
+1. For the next order, order a big mac by entering `have a big mac`.
+
+1. Because two of the three required information are missing, now you'll be prompted twice to provide `burger size` and `dining location` information.
+
+    !["watson-burger-simple Example"](doc/source/images/try_it03.png)
 
 
 ## License
