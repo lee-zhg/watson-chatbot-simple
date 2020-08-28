@@ -1,6 +1,6 @@
 # Run locally
 
-This document shows how to run the `watson-catbot-simple` application on your local machine.
+This document shows how to run the `watson-chatbot-simple` application on your local machine.
 
 ## Steps
 
@@ -15,12 +15,12 @@ This document shows how to run the `watson-catbot-simple` application on your lo
 
 ### 1. Clone the repo
 
-Clone `watson-catbot-simple` locally. In a terminal, run:
+Clone `watson-chatbot-simple` locally. In a terminal, run:
 
 ```
-$ git clone https://github.com/lee-zhg/watson-catbot-simple.git
+$ git clone https://github.com/lee-zhg/watson-chatbot-simple.git
 
-$ cd watson-catbot-simple
+$ cd watson-chatbot-simple
 ```
 
 We’ll be using the file [`data/skill-watson-burger-simple.json`](../../data/skill-watson-burger-simple.json) to upload the Assistant Intents, Entities, and Dialog Nodes.
