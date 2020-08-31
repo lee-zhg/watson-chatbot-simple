@@ -2,6 +2,8 @@
 
 In this repo, you are going to use the basic Watson Assistant features to build a chatbot for ordering burgers, drinks and etc. By having a casual conversation, Watson Natural Language Understanding(NLU) and Watson Natural Language Processing(NLP) capabilities embeded in Watson Assistant service help you effectively understand what your customer want to order, such as type of burgers, size of drinks, dine-in or to-go, and so on.
 
+!["watson-chatbat-simple"](doc/source/images/simple-chatbot01.png)
+
 You can have a simple chatbot up and running in no time. When you access the chatbot on a mobile device, the built-in voice input supports verbal data entry which can greatly enhance the user experience.
 
 After you complete the exercise, you will understand how to:
@@ -14,8 +16,8 @@ After you complete the exercise, you will understand how to:
 * Via this simple chatbot, you can exchange information similar to text messaging.
 
 This repo is part of Watson chatbot serial. The entire serial includes
-* Simple ChatBot
-* Dressed-up ChatBot
+* [Simple ChatBot](https://github.com/lee-zhg/watson-chatbot-simple.git)
+* [Dressed-up ChatBot](https://github.com/lee-zhg/watson-chatbot-advanced.git)
 * Voice-Enabled ChatBot
 * VoiceBot – Call and speak to ChatBot
 
