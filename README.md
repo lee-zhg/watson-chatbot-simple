@@ -18,8 +18,8 @@ After you complete the exercise, you will understand how to:
 This repo is part of Watson chatbot serial. The entire serial includes
 * [Simple ChatBot](https://github.com/lee-zhg/watson-chatbot-simple.git)
 * [Dressed-up ChatBot](https://github.com/lee-zhg/watson-chatbot-advanced.git)
-* Voice-Enabled ChatBot
-* VoiceBot – Call and speak to ChatBot
+* [Voice-Enabled ChatBot](https://github.com/lee-zhg/watson-voice-enabled-chatbot.git)
+* [VoiceBot – Call and speak to ChatBot](https://github.com/lee-zhg/watson-voicebot.git) 
 
 > **NOTE**: Watson Assistant service is available in IBM Cloud as well as part of IBM Cloud pak for Data. As the result, you can deploy and run your chatbot in public cloud, private cloud, hybird cloud and on-prem.
 
