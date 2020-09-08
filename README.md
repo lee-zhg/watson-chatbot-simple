@@ -380,13 +380,13 @@ In this section, you explore dialog flow of the skill `watson-burger-simple`.
 
     !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow02.png)
 
-* Select the `else` child node. As the node label indicates, this is a catch-all node. Just like the `else` in a `if else` statement. If the condition does not satify all nodes above, the flow will reach this node. 
+* Select the `else` child node. As the node label indicates, this is a catch-all node. Just like the `else` in a `if-else` statement. If the condition does not satisfy any node above, the flow will reach this node. 
 
     !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow03.png)
 
     The `else` node responds with message `The chatbot is not trained to take this order` and then jumps to the `reset` root node which clears the environment context and then jumps to the `welcome` root node to start over.
 
-* Select `order burger` child node. Its properies show up in the pop-up wiindow on the right.
+* Select `order burger` child node. Its properies show up in the pop-up window on the right.
 
     !["watson-burger-simple Example"](doc/source/images/sample_dialog_flow04.png)
 
@@ -408,7 +408,7 @@ In this section, you explore dialog flow of the skill `watson-burger-simple`.
 
 * The second slot works similarly. It checks if the entity `@mac_place` has `dining location` information. If the information is not available, the chatbot will prompt user with message `Is this for dine in or to go?`. When the entity `@mac_place` has `dining location` information, it stores data in context variable `$mac_place`.
 
-* When both entity `$mac_burger` and `$mac_place` are populated, you have the burger type as well as dining location information. At this time, you can complete the order. The chatbot displays message `Enjoy your $mac_burger. We are preparing your $mac_place order`. Note, context variable `$mac_burger` and `$mac_place` are used for meaningful message in the current context.
+* When both context variables `$mac_burger` and `$mac_place` are populated, you have the burger type as well as dining location information. The chatbot completes the order by displaying message `Enjoy your $mac_burger. We are preparing your $mac_place order`. Note, context variable `$mac_burger` and `$mac_place` are used for meaningful message in the current context.
 
     When you develop an application that combines a chatbot and order processing, at this point you can pass both context variables `$mac_burger` and `$mac_place` to your order processing module of your application. Of course, a real food ordering application will require and collect additional information. But, the same principle applies. The sample application embedded in the repo sheds light on how you may develop an application taking advantage of Watson chatbot.
 
@@ -491,6 +491,8 @@ To test the chatbot via `try it` link,
 
 1. "Try it out` window open on the right. You should be familar to the chatbot UI now.
 
+##### Order #1
+
 1. Order a cheeseburger by entering `have a large cheeseburger to go`.
 
     !["watson-burger-simple Example"](doc/source/images/try_it02.png)
@@ -503,6 +505,8 @@ To test the chatbot via `try it` link,
     * entity `@category` as `burger`. This entity identifies `food category`.
     * entity `@burger` as `cheeseburger`. This entity identifies `burger type`.
     * entity `@mac_place` as `to-go`. This entity identified `dining location`.
+
+##### Order #2
 
 1. For the next order, order a big mac by entering `have a big mac`.
 
