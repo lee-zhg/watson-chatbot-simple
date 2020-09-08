@@ -14,6 +14,8 @@ After you complete the exercise, you will understand how to:
     - Dialog
 * Create a sample application with embeded chatbot that can be deployed locally. Optionally, deployed to IBM Clod Foundry, IBM Kubernetes Service and OpenShift.
 
+!["Architecture"](doc/source/images/architecture.png)
+
 This repo is part of Watson chatbot serial. The entire serial includes
 * [Simple ChatBot](https://github.com/lee-zhg/watson-chatbot-simple.git)
 * [Dressed-up ChatBot](https://github.com/lee-zhg/watson-chatbot-advanced.git)
@@ -25,8 +27,6 @@ This repo is part of Watson chatbot serial. The entire serial includes
 > Click [here](https://www.ibm.com/products/cloud-pak-for-data) for more information about IBM Cloud Pak for Data.
 
 Adopted from IBM code pattern [Creating a pizza ordering chatbot using Watson Assistant slots feature](https://github.com/IBM/watson-assistant-slots-intro).
-
-!["Architecture"](doc/source/images/architecture.png)
 
 
 ## Use Case Flow
