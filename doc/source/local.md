@@ -167,7 +167,7 @@ The application will be available in your browser at http://localhost:3000
 
 #### Order #1
 
-1. You start orderiing by entering `I like to have a big mac please`.
+1. You start ordering by entering `I like to have a big mac please`.
 
 1. The chatbot replies `Thank you for your ordering. Is this for dine in or to go?`
 
@@ -177,9 +177,9 @@ The application will be available in your browser at http://localhost:3000
 
 In this order transaction, the chatbot understood that you want to order a burger, so it chose the dialog path of ordering burger and collect dining location information.
 
-In the use case, you did not provide additional inforrmation when you made your order `I like to have a big mac please`. The chatbot had to follow the correct dialog path and collect necessary information to complete the order. In this case, it asked `Is this for dine in or to go?`
+In the use case, you did not provide additional inforrmation when you iinitially made your order `I like to have a big mac please`. The chatbot had to follow the correct dialog path and collect necessary information to complete the order. In this case, it asked `Is this for dine in or to go?`
 
-The JSON object has the following information.
+At the end of ordering, the follwiing information in a JSON object was collected by the chatbot.
 
 ```
 {
@@ -213,9 +213,11 @@ The JSON object has the following information.
     "mac_burger": "big mac"
   }
 }
+```
 
 Watson understands
 
+```
 {
   "intents": [
     {
@@ -323,7 +325,7 @@ The context variables
     "mac_mcflurry_flavor": null
 ```
 
-should have correct information at each step. They are all nulled at this time because when the order #1 completes, the chatbot clears itss context. Right before the clearance, `mac_burger` variable should have content `big mac`, variable `mac_place` should have content `to go`.
+should have correct information at each step. They are all nulled at this time because when the order #1 completes, the chatbot clears its context. Right before the clearance, `mac_burger` variable should have content `big mac`, variable `mac_place` should have content `to go`.
 
 #### Order #2
 
