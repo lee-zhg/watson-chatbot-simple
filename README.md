@@ -12,8 +12,7 @@ After you complete the exercise, you will understand how to:
     - Intents
     - Entities
     - Dialog
-* Create a simple chatbot that can be deployed locally, in IBM Clod Foundry, IBM Kubernetes Service and OpenShift.
-* Via this simple chatbot, you can exchange information similar to text messaging.
+* Create a sample application with embeded chatbot that can be deployed locally. Optionally, deployed to IBM Clod Foundry, IBM Kubernetes Service and OpenShift.
 
 This repo is part of Watson chatbot serial. The entire serial includes
 * [Simple ChatBot](https://github.com/lee-zhg/watson-chatbot-simple.git)
