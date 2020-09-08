@@ -329,7 +329,7 @@ should have correct information at each step. They are all nulled at this time b
 
 #### Order #2
 
-1. You start orderiing by entering `I like to have one big mac to go`.
+1. You start ordering by entering `I like to have one big mac to go`.
 
 1. The chatbot replies `Thank you for your ordering. Enjoy your big mac. We are preparing your to-go order`.
 
@@ -337,7 +337,7 @@ should have correct information at each step. They are all nulled at this time b
 
 This example illustrates how `Natural Language Understanding` and `Natural Language Process` extract information from casual conversation. In this order transaction, the chatbot understood that you want to order a burger, so it chose the dialog path of ordering burger. It also understood that this is a to-go order. So, it did not collect the dining locatiion inforrmation as it did in order #1.
 
-Because all required iinformation to complete a burger order were provided when you made the purchase, the chatbot diid not collect further information before it completes the order #2.
+Because all required iinformation to complete a burger order were provided when you made the purchase, the chatbot did not collect further information before it completes the order #2.
 
 The JSON object confirms it.
 
